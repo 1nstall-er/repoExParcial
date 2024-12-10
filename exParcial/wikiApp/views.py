@@ -5,40 +5,60 @@ from django.urls import reverse
 
 from .models import temaWiki,articuloWiki
 
-listaTemas = []
+
 
 # Create your views here.
 
 def vistaprincipal(request):
     return render(request,'vistaprincipal.html', {
-        'listaTemas':listaTemas
+        'listaTemas':temaWiki.objects.all()
     })
 
 def vista_crear_nuevo_tema(request):
     if request.method == 'POST':
         nombreTema = request.POST.get('nombreTema')
-        listaTemas.append(nombreTema)
+        descripcionTema = request.POST.get('descripcionTema')
+        temaWiki.objects.create(
+            nombreTema=nombreTema,
+            descripcionTema=descripcionTema,
+        )
     return render(request,'vista_crear_nuevo_tema.html', {
-        'listaTemas':listaTemas
+        'listaTemas':temaWiki.objects.all()
     })
 
 def vista_crear_nuevo_articulo(request):
+    if request.method == 'POST':
+        tituloArticulo = request.POST.get('tituloArticulo')
+        contenidoArticulo = request.POST.get('contenidoArticulo')
+        tema = request.POST.get('tema')
+        temaObj = temaWiki.objects.get(id=tema)
+        articuloWiki.objects.create(
+            tituloArticulo=tituloArticulo,
+            contenidoArticulo=contenidoArticulo,
+            temaR=temaObj,
+        )
     return render(request,'vista_crear_nuevo_articulo.html', {
-        'listaTemas':listaTemas
+        'listaTemas':temaWiki.objects.all(),
     })
 
-def vista_articulo_por_tema(request):
+def vista_articulo_por_tema(request, idTema):
+    temainfo = temaWiki.objects.get(id=idTema)
+    listaArticulos = temainfo.articulowiki_set.all()
+    print(listaArticulos)
     return render(request,'vista_articulo_por_tema.html', {
-        'listaTemas':listaTemas
+        'objTema':temainfo,
+        'listaTemas':temaWiki.objects.all(),
+        'listaArticulos':listaArticulos,
     })
 
 def vista_de_articulos(request):
     return render(request,'vista_de_articulos.html', {
-        'listaTemas':listaTemas
+        'listaTemas':temaWiki.objects.all()
     })
 
 def vista_de_busqueda(request):
     return render(request,'vista_de_busqueda.html', {
-        'listaTemas':listaTemas
+        'listaTemas':temaWiki.objects.all()
+        
     })
 

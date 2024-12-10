@@ -6,7 +6,7 @@
 
 {% block contenido %}
    <h2>Crear nuevo articulo</h2>
-   <form class="row">
+   <form class="row" method="post" action="{% url 'wikiApp:vista_crear_nuevo_articulo' %}">
         {% csrf_token %}
         <div>
             <label>Titulo del articulo</label>
@@ -16,10 +16,10 @@
         <div>
             <label>Elegir tema</label>
             <br>
-            <select>
+            <select name="tema">
                 <option selected>...</option>
                 {% for tema in listaTemas %}
-                <option>{{ tema }}</option>
+                <option value="{{ tema.id }}">{{ tema.nombreTema }}</option>
                 {% endfor %}
             </select>
         </div>

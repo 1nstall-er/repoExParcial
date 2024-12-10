@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Vista de articulo por tema</title>
-    </head>
-    <body>
+{% extends "layout.html" %}
 
-    </body>
-</html>
+{% block titulo %}
+   Artículos Relacionados
+{% endblock %}
+
+{% block contenido %}
+   <h2>Artículos relacionados {{ objTema.nombreTema }}</h2>
+   {% for articulo in listaArticulos %}
+   <div>
+        <ul>
+            <li>{{ articulo.tituloArticulo }}</li>
+        </ul>
+   </div>
+   {% endfor %}
+
+{% endblock %}
