@@ -1,9 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Crear nuevo tema</title>
-    </head>
-    <body>
+{% extends "layout.html" %}
 
-    </body>
-</html>
+{% block titulo %}
+   Vista crear nuevo tema
+{% endblock %}
+
+{% block contenido %}
+   <h2>Crear nuevo tema</h2>
+   <form class="row" method="post" action="{% url 'wikiApp:vista_crear_nuevo_tema' %}">
+        {% csrf_token %}
+        <div>
+            <label>Nombre del tema</label>
+            <br>
+            <input type="text" name="nombreTema">
+        </div>
+        <div>
+            <label>Descripcion</label>
+            <br>
+            <textarea rows="5" cols="60" name="descripcionTema"></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+   </form>
+{% endblock %}

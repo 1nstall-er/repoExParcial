@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name='wikiApp'
+
 urlpatterns = [
     path('',views.vistaprincipal,name='vistapricipal'),
     path('vista_crear_nuevo_tema',views.vista_crear_nuevo_tema,name='vista_crear_nuevo_tema'),

@@ -1,8 +1,35 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Crear nuevo articulo</title>
-    </head>
-    <body>
-    </body>
-</html>
+{% extends "layout.html" %}
+
+{% block titulo %}
+   Vista crear nuevo Articulo
+{% endblock %}
+
+{% block contenido %}
+   <h2>Crear nuevo articulo</h2>
+   <form class="row">
+        {% csrf_token %}
+        <div>
+            <label>Titulo del articulo</label>
+            <br>
+            <input type="text" name="tituloArticulo">
+        </div>
+        <div>
+            <label>Elegir tema</label>
+            <br>
+            <select>
+                <option selected>...</option>
+                {% for tema in listaTemas %}
+                <option>{{ tema }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label>Contenido del articulo</label>
+            <br>
+            <textarea rows="5" cols="60" name="contenidoArticulo"></textarea>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+   </form>
+{% endblock %}
