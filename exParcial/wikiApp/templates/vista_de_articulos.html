@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Vista de articulos</title>
-    </head>
-    <body>
+{% extends "layout.html" %}
 
-    </body>
-</html>
+{% block titulo %}
+   Info Articulos
+{% endblock %}
+
+{% block contenido %}
+   <h2>Informacion</h2>
+   
+   <div>
+        <ul>
+            <li>Titulo:<br>{{ objArticulo.tituloArticulo }}</li>
+            <li>Tema:<br>{{ objArticulo.tema.nombreTema }}</li>
+            <li>Contenido:<br>{{ objArticulo.contenidoArticulo }}</li>
+        </ul>
+   </div>
+   
+
+{% endblock %}

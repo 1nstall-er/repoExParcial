@@ -44,16 +44,17 @@ def vista_crear_nuevo_articulo(request):
 def vista_articulo_por_tema(request, idTema):
     temainfo = temaWiki.objects.get(id=idTema)
     listaArticulos = temainfo.articulowiki_set.all()
-    print(listaArticulos)
     return render(request,'vista_articulo_por_tema.html', {
         'objTema':temainfo,
         'listaTemas':temaWiki.objects.all(),
         'listaArticulos':listaArticulos,
     })
 
-def vista_de_articulos(request):
+def vista_de_articulos(request, idArticulo):
+    articuloinfo = articuloWiki.objects.get(id=idArticulo)
     return render(request,'vista_de_articulos.html', {
-        'listaTemas':temaWiki.objects.all()
+        'objArticulo':articuloinfo,
+        'listaTemas':temaWiki.objects.all(),
     })
 
 def vista_de_busqueda(request):

@@ -9,7 +9,7 @@
    {% for articulo in listaArticulos %}
    <div>
         <ul>
-            <li>{{ articulo.tituloArticulo }}</li>
+            <li><a href="{% url 'wikiApp:vista_de_articulos' articulo.id %}">{{ articulo.tituloArticulo }}</a></li>
         </ul>
    </div>
    {% endfor %}
