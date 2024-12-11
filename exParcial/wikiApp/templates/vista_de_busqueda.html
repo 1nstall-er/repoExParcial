@@ -1,9 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Vista de busqueda</title>
-    </head>
-    <body>
+{% extends "layout.html" %}
 
-    </body>
-</html>
+{% block titulo %}
+   Resultado de busquedas
+{% endblock %}
+
+{% block contenido %} 
+   {% if query %}
+       <h3>Resultados para "{{ query }}":</h3>
+       {% if listaArticulos %}
+           <ul>
+               {% for articulo in listaArticulos %}
+               <div>
+                    <ul>
+                        <li><a href="{% url 'wikiApp:vista_de_articulos' articulo.id %}">{{ articulo.tituloArticulo }}</a></li>
+                    </ul>
+                 </div>       
+               {% endfor %}
+           </ul>
+       {% else %}
+           <p>No se encontraron artículos que coincidan con "{{ query }}".</p>
+       {% endif %}
+   {% endif %}
+{% endblock %}

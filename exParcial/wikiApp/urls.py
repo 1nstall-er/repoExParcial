@@ -9,5 +9,5 @@ urlpatterns = [
     path('vista_crear_nuevo_articulo',views.vista_crear_nuevo_articulo,name='vista_crear_nuevo_articulo'),
     path('vista_articulo_por_tema/<str:idTema>/',views.vista_articulo_por_tema,name='vista_articulo_por_tema'),
     path('vista_de_articulos/<str:idArticulo>/',views.vista_de_articulos,name='vista_de_articulos'),
-    path('vista_de_busqueda',views.vista_de_busqueda,name='vista_de_busqueda'),
+    path('vista_de_busqueda/',views.vista_de_busqueda,name='vista_de_busqueda'),
 ]

@@ -57,9 +57,15 @@ def vista_de_articulos(request, idArticulo):
         'listaTemas':temaWiki.objects.all(),
     })
 
+listaArticulos = []
+
 def vista_de_busqueda(request):
+    query = request.GET.get('buscar')
+    if query:
+        listaArticulos = articuloWiki.objects.filter(tituloArticulo__icontains=query)
     return render(request,'vista_de_busqueda.html', {
-        'listaTemas':temaWiki.objects.all()
-        
+        'listaTemas':temaWiki.objects.all(),
+        'listaArticulos': listaArticulos,
+        'query': query,
     })
 
